@@ -3,9 +3,9 @@ version: 0.2
 # https://docs.docker.com/engine/reference/commandline/manifest/
 
 phases:
-  install:
-    commands:
-      - yum update -y
+  #install:
+  #  commands:
+  #    - yum update -y
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
