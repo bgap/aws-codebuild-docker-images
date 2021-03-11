@@ -9,19 +9,19 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com)
+      - $( aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 568276182587.dkr.ecr.eu-west-1.amazonaws.com )
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker manifest...
       - export DOCKER_CLI_EXPERIMENTAL=enabled
-      - docker manifest create $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest-arm64v8 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest-amd64
-      - docker manifest annotate --arch arm64 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest-arm64v8
-      - docker manifest annotate --arch amd64 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest-amd64
+      - docker manifest create 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME:latest-arm64v8 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME:latest-amd64
+      - docker manifest annotate --arch arm64 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME:latest-arm64v8
+      - docker manifest annotate --arch amd64 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME:latest-amd64
 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker manifest push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
-      - docker manifest inspect $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+      - docker manifest push 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME
+      - docker manifest inspect 568276182587.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME
